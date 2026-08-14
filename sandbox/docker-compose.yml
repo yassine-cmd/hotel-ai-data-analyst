@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  sandbox:
+    image: code-sandbox:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9000:9000"
+    container_name: code-sandbox
+    restart: unless-stopped
+    mem_limit: 512m
+    cpus: 1.0
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:size=100m
